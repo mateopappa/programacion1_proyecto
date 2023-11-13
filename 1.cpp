@@ -134,6 +134,6 @@ int main()
         break;
     }
 }
-while (opcion1 != 4)
+while (opcion1 != 4) s
     ;
 }
