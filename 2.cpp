@@ -17,7 +17,7 @@ struct datosCandidatos
     int dni;
     int votos_recibidos;
     int edad;
-    char sexo [1];
+    char sexo;
 };
 
 struct datosElectores
@@ -51,23 +51,6 @@ bool existe (int dni, datosCandidatos x[],int n){
     return 0;
     
 }
-
-void buscar_candidatos (datosCandidatos cand[], int n_cand, int buscar_dni){
-    int i, band=0;
-
-    for (i=0;i<n_cand;i++){
-        if (cand[i].dni == buscar_dni){
-            cout<<"El numero de votantes que tiene es: "<<cand[i].votos_recibidos<<endl;   // cargar numero de votos;
-            band=1;
-            break;
-        }else if (band==0){
-            cout<<"No hay candidatos con ese dni."<<endl;
-        }
-    }
-    
-
-}
-
 void calculo_de_edad_candidatos (datosCandidatos A[], int n_cand, int diaAct, int mesAct, int anioAct){
 	int i;
 
@@ -113,44 +96,10 @@ void calculo_de_edad_votantes (datosElectores X[], int n_vot, int diaAct, int me
     }
     
 }
-
-void agregar_cand (datosCandidatos cand[], int n_cand){
-    int i;
-
-    cout<<"---CANDIDATOS---"<<endl;
-
-    for (i=0;i<n_cand;i++){
-        
-        cout<<"Ingrese el nombre: "<<endl;
-        cin.getline(cand[i].nombre,20,'\n');
-        
-        cout<<"Ingrese el apellido: "<<endl;
-        cin.getline(cand[i].apellido,20,'\n');
-        cin.ignore();
-
-        cout<<"Ingrese el sexo (m,f): "<<endl;
-        cin.getline(cand[i].sexo,1,'\n');
-        cin.ignore();
-        
-        cout<<"Ingrese el dni: "<<endl;
-        cin>>cand[i].dni;
-        
-        cout<<"Ingrese el partido politico: "<<endl;
-        cin.getline(cand[i].partidoPol,20,'\n');
-
-        cout<<"Ingrese la fecha de nacimiento: (d/m/a)"<<endl;
-        cin>>cand[i].fecha_1.dia;
-        cin>>cand[i].fecha_1.mes;
-        cin>>cand[i].fecha_1.anio;
-
-        cin.ignore();
-        
-    }
-}
     
 int main()
 {
-    int buscar_dni, n_cand;
+    int dni_busqueda_cand, n_cand;
 
     datosCandidatos cand[100];
     datosElectores elec[100];
@@ -163,18 +112,17 @@ int main()
     {
     case 1:
         cout << "Agregando nuevo candidato..." << endl;
-        agregar_cand (cand, n_cand);
+       
         break;
 
     case 2:
-        cout<<"ingrese el dni del q  esta haciendo kk"<<endl;
-        cin>>buscar_dni;
+        
         break;
 
     case 3:
         cout << "Ingrese el dni del candidato a eliminar " << endl;
-        cin>> buscar_dni;
-        buscar_candidatos(cand, n_cand, buscar_dni);
+        cin>> dni_busqueda_cand;
+        busqueda(cand, n_cand, dni_busqueda_cand);
         break;
 
     default:
