@@ -27,7 +27,7 @@ struct datosElectores
     fecha fecha_2;
     int dni;
     int edad;
-    char sexo;
+    char sexo [1];
 };
 void menu1()
 {
@@ -114,7 +114,7 @@ void calculo_de_edad_votantes (datosElectores X[], int n_vot, int diaAct, int me
     
 }
 
-void agregar_cand (datosCandidatos cand[], int n_cand){
+void agregar_cand (datosCandidatos cand[], int n_cand){     //candidatos
     int i;
 
     cout<<"---CANDIDATOS---"<<endl;
@@ -126,11 +126,9 @@ void agregar_cand (datosCandidatos cand[], int n_cand){
         
         cout<<"Ingrese el apellido: "<<endl;
         cin.getline(cand[i].apellido,20,'\n');
-        cin.ignore();
 
         cout<<"Ingrese el sexo (m,f): "<<endl;
         cin.getline(cand[i].sexo,1,'\n');
-        cin.ignore();
         
         cout<<"Ingrese el dni: "<<endl;
         cin>>cand[i].dni;
@@ -143,11 +141,17 @@ void agregar_cand (datosCandidatos cand[], int n_cand){
         cin>>cand[i].fecha_1.mes;
         cin>>cand[i].fecha_1.anio;
 
-        cin.ignore();
         
     }
 }
-    
+
+void mostrar_candidatos (datosCandidatos cand[], int n_cand){
+    int i;
+    for (i=0; i<n_cand; i++){
+        cout<<"Nombre: "<<cand[i].nombre<<"Apellido: "<<cand[i].apellido<<" Partido P: "<<cand[i].partidoPol<<endl;
+        cout<<"\n";
+    }
+}
 int main()
 {
     int buscar_dni, n_cand;
@@ -167,8 +171,8 @@ int main()
         break;
 
     case 2:
-        cout<<"ingrese el dni del q  esta haciendo kk"<<endl;
-        cin>>buscar_dni;
+        cout<<"Lista de candidatos ya ingresados:"<<endl;
+        mostrar_candidatos (cand, n_cand);
         break;
 
     case 3:
