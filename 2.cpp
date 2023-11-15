@@ -111,6 +111,7 @@ void agregar_cand (datosCandidatos cand[], int n_cand){     //candidatos
             cin.getline(cand[i].apellido,20,'\n');
 
             cout<<"Ingrese el sexo (m,f): "<<endl;
+            cin.ignore();
             cin.getline(cand[i].sexo,1,'\n');
             
             cout<<"Ingrese el dni: "<<endl;
@@ -124,7 +125,7 @@ void agregar_cand (datosCandidatos cand[], int n_cand){     //candidatos
             cin>>cand[i].fecha_1.mes;
             cin>>cand[i].fecha_1.anio;
 
-        } while (cand[i].dni != cand[i].dni);
+        } while (existe1 (cand[i].dni, cand, n_cand)== 1);
         
         
     }
@@ -233,7 +234,7 @@ void agregar_elec (datosElectores elec[], int n_elec){     //electores
             cin>>elec[i].fecha_2.dia;
             cin>>elec[i].fecha_2.mes;
             cin>>elec[i].fecha_2.anio;
-        }while (existe2 == 0);
+        }while (existe2 (elec[i].dni, elec, n_elec)== 1);
         
     }
 }
@@ -249,6 +250,7 @@ int main()
     do{
     menu1();
     cin >> opcion1;
+    cin.ignore();
     switch (opcion1)
     {
     case 1:
@@ -296,5 +298,5 @@ int main()
         break;
     }
 }
-while (opcion1 != 4);
+while (opcion1 != 8);
 }
